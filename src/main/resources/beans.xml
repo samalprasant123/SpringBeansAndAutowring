@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	default-init-method="init" default-destroy-method="destroy"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="person" class="com.prasant.spring.bean.Person">
+		<constructor-arg name="id" value="1234" index="0"></constructor-arg>
+		<constructor-arg name="name" value="Gayatree" index="1"></constructor-arg>
+		<property name="taxId" value="123789"></property>
+		<!-- <constructor-arg name="address" ref="address"></constructor-arg> -->
+		<property name="address" ref="address"></property>
+	</bean>
+
+	<bean id="address" class="com.prasant.spring.bean.Address">
+		<constructor-arg name="street" value="1009 Misty Mtn Rd"></constructor-arg>
+		<constructor-arg name="zipcode" value="0"></constructor-arg>
+	</bean>
+
+	<bean id="address2" class="com.prasant.spring.bean.Address">
+		<constructor-arg name="street" value="1009 Misty Mtn Road"></constructor-arg>
+	</bean>
+
+	<bean id="address3" class="com.prasant.spring.bean.Address"
+		p:street="1009 Misty Mountain Road" p:zipcode="14789">
+	</bean>
+	
+	<bean id="person2" class="com.prasant.spring.bean.Person"
+		factory-method="getPerson">
+		<constructor-arg name="id" value="2587"></constructor-arg>
+		<constructor-arg name="name" value="Humpty"></constructor-arg>
+	</bean>
+	
+	<bean id="person3" class="com.prasant.spring.bean.Person"
+		factory-bean="personFactory" factory-method="createPerson">
+		<constructor-arg name="id" value="3698"></constructor-arg>
+		<constructor-arg name="name" value="Shaktimaan"></constructor-arg>
+	</bean>
+	
+	<bean id="personFactory" class="com.prasant.spring.bean.PersonFactory">
+	</bean>
+	
+</beans>
